@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" xlmns="www.thymeleaf.org">
+
+<head>
+	<th:block th:include="layout::mainhead">
+	</th:block>
+
+</head>
+
+<body>
+	<header th:insert="layout::nav">
+	</header>
+
+	<table class="table table-warning table-hover">
+		<thead>
+			<tr>
+				<th scope="col">Number</th>
+				<th scope="col">Candidate name</th>
+				<div sec:authorize="hasRole('ADMIN')">
+					<th scope="col">Votes</th>
+				</div>
+
+				<th scope="col" align="center">Action</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="candidate:${candidates}">
+				<th scope="row" th:text="${candidate.id}"></th>
+				<td th:text="${candidate.name}"></td>
+				<div sec:authorize="hasRole('ADMIN')">
+					<td th:text="${candidate.votes}"></td>
+				</div>
+
+				<div>
+					<td>
+
+						<a button type="button" class="btn btn-primary btn-sm"
+							th:href="@{/voting/addVote(id=${candidate.id})}" sec:authorize="!hasRole('ADMIN')">Vote
+						</a>
+
+						<a button type="button" class="btn btn-primary"
+							th:href="@{/voting/candidate/update/{id}(id=${candidate.id})}"
+							sec:authorize="hasRole('ADMIN')">Update</a>
+						<a button type="button" class="btn btn-primary"
+							th:href="@{/voting/candidate/delete/{id}(id=${candidate.id})}"
+							sec:authorize="hasRole('ADMIN')">Delete</a>
+
+				</div>
+				</td>
+				</div>
+
+
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	<footer th:replace="layout::footer">
+	</footer>
+</body>
+
+</html>

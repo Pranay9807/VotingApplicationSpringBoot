@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" xlmns="www.thymeleaf.org">
+
+<head>
+
+	<th:block th:include="layout::mainhead">
+	</th:block>
+</head>
+
+<body>
+	<header th:insert="layout::nav">
+	</header>
+	<div class="heading">
+		<h1>Update candidate</h1>
+	</div>
+	<div class="container">
+		<form method="post" th:action="@{/voting/candidate/update/{id}(id=${candidate.id})}" th:object="${candidate}">
+			<div class="mb-3">
+				<label for="Name" class="form-label">Name</label>
+				<input type="text" class="form-control" id="Name" th:field="*{name}">
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+
+	<footer th:replace="layout::footer">
+	</footer>
+
+</body>
+
+</html>

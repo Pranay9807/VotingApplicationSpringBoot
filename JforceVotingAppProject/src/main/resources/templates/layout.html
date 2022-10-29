@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" xlmns="www.thymeleaf.org">
+
+<head th:fragment="mainhead">
+
+
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- CSS only -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body>
+
+	<header th:fragment="navbar">
+
+		<nav class="navbar navbar-expand-lg bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">Navbar</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" th:href="@{/voting}">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" sec:authorize="isAuthenticated()"
+								th:href="@{/voting/candidate/list}">Candidate's</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" th:href="@{/voting/register}">Register</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" th:href="@{/voting/candidate/add}" sec:authorize="hasRole('ADMIN')">Add
+								candiate</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" sec:authorize="!isAuthenticated()" th:href="@{/voting/login}">Login</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/voting/logout}">Logout</a>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+		</nav>
+	</header>
+
+
+
+
+
+
+	<footer>
+	</footer>
+
+</body>
+
+</html>
